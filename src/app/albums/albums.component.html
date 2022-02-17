@@ -1,0 +1,19 @@
+<section>
+    <div class="bigbox">
+        <div class="titlebox">
+            <h4 class="h4user">Album's User</h4>
+            <br>
+            <h4 class="h4title">Title</h4>
+            <br>
+            <h4 class="h4number">Number Of Photos</h4>
+        </div>
+
+        <div class="container" *ngFor="let item of albums" [routerLink]="['/albums', item.id]">
+            <div class="childcontainer">
+                <p class="usertext">{{getNames(item.userId)}}</p>
+                <p class="usertitle">{{item.title}}</p>
+                <p class="userbody">50</p>
+            </div>
+        </div>
+    </div>
+</section>

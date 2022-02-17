@@ -1,0 +1,50 @@
+section {
+    background-color: rgb(243, 243, 243);
+}
+
+.bigbox {
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 70%;
+
+    .ngforbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 5px;
+        height: 300px;
+        background-color: white;
+        margin: 40px 40px 40px 40px;
+        transition: all 0.2s ease-in-out;
+        
+        .colorbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80%;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: darkcyan;
+            font-size: 26px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            color: white;
+        }
+
+        .textbox {
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 14px;
+
+            span {
+                color: rgb(0, 179, 179);
+            }
+        }
+    }
+
+    .ngforbox:hover {
+        transform:scale(1.007);
+        box-shadow:5px 5px 2px black;
+    }
+}

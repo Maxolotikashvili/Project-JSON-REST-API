@@ -1,0 +1,25 @@
+<section>
+    <div class="buttonbox">
+        <button class="button" routerLink="addpost" routerLinkActive="addactive">Add Post</button>
+    </div>
+
+    <router-outlet></router-outlet>
+
+        <div class="bigbox">
+            <div class="titlebox">
+                <h4>Post's User</h4>
+                <br>
+                <h4 class="h4title">Title</h4>
+                <br>
+                <h4>Body</h4>
+            </div>
+
+            <div class="container" *ngFor="let item of posts" [routerLink]="['/posts', item.userId]">
+                <div class="childcontainer">
+                    <p class="usertext">{{getName(item.userId)}}</p>
+                    <p class="usertitle">{{item.title}}</p>
+                    <p class="userbody">{{item.body}}</p>
+                </div>
+            </div>
+        </div>
+</section>
