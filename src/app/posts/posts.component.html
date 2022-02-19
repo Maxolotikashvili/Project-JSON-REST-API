@@ -14,7 +14,7 @@
                 <h4>Body</h4>
             </div>
 
-            <div class="container" *ngFor="let item of posts" [routerLink]="['/posts', item.userId]">
+            <div class="container" *ngFor="let item of posts" [routerLink]="['/posts', item.id]">
                 <div class="childcontainer">
                     <p class="usertext">{{getName(item.userId)}}</p>
                     <p class="usertitle">{{item.title}}</p>

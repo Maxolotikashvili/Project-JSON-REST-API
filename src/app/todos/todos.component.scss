@@ -35,8 +35,14 @@ section {
         .booleanbox {
             display: flex;
 
-            .completion {
-                margin-right: 5px;
+            .check {
+                color: green;
+                margin-left: 10px;
+            }
+
+            .faXmark {
+                color: red;
+                margin-left: 15px;
             }
         }
 

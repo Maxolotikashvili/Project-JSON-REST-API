@@ -20,15 +20,15 @@ export class AlbumsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.albumservice.getAlbums().subscribe((value) => {
+    this.albumservice.getAlbums().subscribe((value: albumType[]) => {
       this.albums = value;
     });
 
-    this.userservice.getUsers().subscribe((value) => {
+    this.userservice.getUsers().subscribe((value: userType[]) => {
       this.users = value;
     });
 
-    this.photoservice.getPhotos().subscribe((value) => {
+    this.photoservice.getPhotos().subscribe((value: photosType[]) => {
       this.photos = value;
     });
   }

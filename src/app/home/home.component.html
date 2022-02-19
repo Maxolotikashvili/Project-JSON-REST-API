@@ -4,9 +4,19 @@
   <h4 class="angularapp">Angular App</h4>
 
   <div class="boxofboxes">
-    <div class="routebox" routerLink="/posts">Posts</div>
-    <div class="routebox" routerLink="/albums">Albums</div>
-    <div class="routebox" routerLink="/todos">Todos</div>
+
+    <div class="routebox" routerLink="/posts">
+      <fa-icon [icon]="clipboard" class="logoes"></fa-icon>Posts
+    </div>
+
+    <div class="routebox" routerLink="/albums">
+      <fa-icon [icon]="images" class="logoes"></fa-icon>Albums
+    </div>
+    
+    <div class="routebox" routerLink="/todos">
+      <fa-icon [icon]="check" class="logoes"></fa-icon>Todos
+    </div>
+ 
   </div>
 
 </div>

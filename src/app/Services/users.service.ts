@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 
 export interface userType {
   id: number,
@@ -26,6 +27,15 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get<userType[]>('https://jsonplaceholder.typicode.com/users')
+    return this.http.get<userType[]>('https://jsonplaceholder.typicode.com/users').pipe(catchError((error) => this.handleError(error)))
   }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+    console.error('An Error Occurred:', error.error);
+    } else {console.error(`Service Returned Code: ${error.status}, Body Was:`, error.error);}
+  
+    return throwError('Something happened; please Try Again Later.');
+  }
+
 }

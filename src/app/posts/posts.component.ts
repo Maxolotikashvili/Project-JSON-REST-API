@@ -21,13 +21,13 @@ export class PostsComponent implements OnInit {
 
     // PostsGet
 
-    this.postservice.getPost().subscribe((value) => {
+    this.postservice.getPost().subscribe((value: postType[]) => {
       this.posts = value;
     })
 
     // UsersGet
 
-    this.userservice.getUsers().subscribe((value) => {
+    this.userservice.getUsers().subscribe((value: userType[]) => {
       this.users = value
     })
   }
