@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { PostsService, postType } from './posts.service';
 
 export interface commentsType {
@@ -15,6 +15,8 @@ export interface commentsType {
   providedIn: 'root'
 })
 export class CommentsService {
+  url: string = 'https://jsonplaceholder.typicode.com/comments';
+
   posts!: postType[]
 
   constructor(private http: HttpClient, private postsservice: PostsService) {
@@ -23,15 +25,15 @@ export class CommentsService {
     })
   }
 
-  //
-  getComments() {
-    return this.http.get<commentsType[]>('https://jsonplaceholder.typicode.com/comments').pipe(catchError((error) => this.handleError(error)))
+  // 
+  sendComment(comment: object): Observable<any> {
+    return this.http.post<object>(this.url, comment)
   }
 
   //
-  findId(userId: number) {
-      const text = this.posts?.find((data) => data.id === userId);
-      return of(text?.title)
+  getComments() {
+    return this.http.get<commentsType[]>(this.url)
+    .pipe(catchError((error) => this.handleError(error)))
   }
 
   //

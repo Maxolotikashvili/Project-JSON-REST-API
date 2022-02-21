@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsService, commentsType } from '../Services/comments.service';
-import { UsersService, userType } from '../Services/users.service';
 import { Location } from '@angular/common';
 import { faXmark, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { PostsService, postType } from '../Services/posts.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,57 +16,101 @@ import { faXmark, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 export class CommentsComponent implements OnInit {
   userId!: any;
   comments!: commentsType[];
-  users!: userType[];
+  posts!: postType[];
   postName!: any;
+  newComment!: any;
+  comentsForm!: any;
+  formName!: any;
+  formBody!: any;
+  updatedComment!: any;
+  nameModel!: any;
+  bodyModel!: any;
+
+  editMode: boolean = false;
 
   faXmark = faXmark;
   leftArrow = faAngleLeft;
 
-  editMode: boolean = false;
+  // 
+  addpost: object = {
+  name: this.formName,
+  body: this.formBody
+  };
 
+  // 
+  update: object = {
+    title: this.nameModel,
+    body: this.bodyModel
+  }
+
+  //
   constructor(
     private route: ActivatedRoute,
     private commentsservice: CommentsService,
-    private userservice: UsersService,
-    private location: Location
-    ) { }
+    private postservice: PostsService,
+    private location: Location,
+    private fb: FormBuilder,
+    private http: HttpClient
+  ) { 
+
+    // 
+   this.comentsForm = this.fb.group({
+     name: ['', Validators.required],
+     body: ['', Validators.required]
+   })
+
+  }
 
   ngOnInit(): void {
+
     //
     this.userId = this.route.snapshot.paramMap.get('id');
 
     //
-    this.commentsservice.getComments().subscribe((value: commentsType[])=> {
-      this.comments = value;
+    this.postservice.getPost().subscribe((value: postType[])=> {
+      this.posts = value
+      
+      //
+      this.postName = this.posts?.find((post: any)=> post.id === +this.userId);
+
+      this.nameModel = this.postName?.title;
+      this.bodyModel = this.postName?.body;
+    });
+
+    // 
+    this.http.put<any>(`https://jsonplaceholder.typicode.com/posts/${this.userId}`, this.update)
+    .subscribe((data) => {this.updatedComment = data})
+
+    // 
+    this.commentsservice.sendComment(this.addpost).subscribe((data)=> {
+      this.newComment = data 
     });
 
     //
-    this.commentsservice.findId(this.userId).subscribe((value) => {
-      this.postName = value;
-    })
+    this.commentsservice.getComments().subscribe((value: commentsType[])=> {
+      this.comments = value?.filter((item) => item.postId === +this.userId);
+    });
 
-    //
-    this.userservice.getUsers().subscribe((value: userType[])=> {
-      this.users = value;
-    })
   }
-
+  
+  // 
   onEdit() {
-    this.editMode = !this.editMode
+    this.editMode = !this.editMode;
+    this.updatedComment = {title: this.nameModel, body: this.bodyModel}
+    this.postName = this.updatedComment;
   }
 
-  matchUsers(userId: number) {
-    const user = this.comments.find((user)=> user.id === userId);
-    return user?.name
-  }
-
-  matchBody(id: number) {
-    const body = this.comments.find((body)=> body.id === id);
-    return body?.body
-  }
-
+  // 
   goBack(): void {
-    this.location.back()
+    this.location.back();
+  }
+
+  // 
+  addComment() {
+    this.formName = this.comentsForm.get('name')?.value;
+    this.formBody = this.comentsForm.get('body')?.value;
+    this.newComment = {name: this.formName, body: this.formBody}
+    this.comments.push(this.newComment)
   }
 
 }

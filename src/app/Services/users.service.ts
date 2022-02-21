@@ -23,11 +23,15 @@ export interface userType {
   providedIn: 'root'
 })
 export class UsersService {
-
+  url = 'https://jsonplaceholder.typicode.com/users'
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get<userType[]>('https://jsonplaceholder.typicode.com/users').pipe(catchError((error) => this.handleError(error)))
+    return this.http.get<userType[]>(this.url).pipe(catchError((error) => this.handleError(error)))
+  }
+
+  sendUser(newusername: object) {
+    return this.http.post(this.url, newusername)
   }
 
   private handleError(error: HttpErrorResponse) {

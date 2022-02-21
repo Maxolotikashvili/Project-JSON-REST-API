@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
-import { AddpostComponent } from './addpost/addpost.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -13,7 +12,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     AppComponent,
     HomeComponent,
-    AddpostComponent,
     PagenotfoundComponent
   ],
   imports: [

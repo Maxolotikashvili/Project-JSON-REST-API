@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CommentsRoutingModule } from './comments-routing.module';
 import { CommentsComponent } from './comments.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     CommentsRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CommentsModule { }

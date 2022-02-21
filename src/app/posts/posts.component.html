@@ -1,25 +1,80 @@
 <section>
+
     <div class="buttonbox">
-        <button class="button" routerLink="addpost" routerLinkActive="addactive">Add Post</button>
+        <button class="button" (click)="editShow()" *ngIf="!showMode">Add Post</button>
+        <button class="button" (click)="editShow()" *ngIf="showMode">Close</button>
     </div>
 
-    <router-outlet></router-outlet>
+    <!-- Form -->
 
-        <div class="bigbox">
-            <div class="titlebox">
-                <h4>Post's User</h4>
-                <br>
-                <h4 class="h4title">Title</h4>
-                <br>
-                <h4>Body</h4>
-            </div>
-
-            <div class="container" *ngFor="let item of posts" [routerLink]="['/posts', item.id]">
-                <div class="childcontainer">
-                    <p class="usertext">{{getName(item.userId)}}</p>
-                    <p class="usertitle">{{item.title}}</p>
-                    <p class="userbody">{{item.body}}</p>
+    <form [formGroup]="postform" *ngIf="showMode">
+        <div class="formbox">
+    
+            <div class="smallbox">
+    
+                <div class="inputbox">
+                    <label class="label">Post Author</label>
+                    <input type="text" class="input" formControlName="author">
+                    <div class="errorbox" *ngIf="Author.touched">
+                        <div *ngIf="Author?.errors?.['required']">Form Must Be Filled</div> 
+                    </div>
                 </div>
+    
+                <div class="inputbox">
+                    <label class="label">Title</label>
+                    <input type="text" class="input" formControlName="title">
+                    <div class="errorbox" *ngIf="Title.touched">
+                        <div *ngIf="Title?.errors?.['required']">Form Must Be Filled</div> 
+                    </div>
+                </div>
+    
+                <div class="inputbox">
+                    <label class="label">Body</label>
+                    <input type="text" class="input" formControlName="body">
+                    <div class="errorbox" *ngIf="Body.touched">
+                        <div *ngIf="Body?.errors?.['required']">Form Must Be Filled</div> 
+                    </div>
+                </div>
+    
+                <div class="twobuttonbox">
+                    <div class="addbox">
+                        <button class="add" type="submit" (click)="onAdd()" [disabled]="postform.status === 'INVALID'">Add</button>
+                    </div>
+                    <div class="resetbox">
+                        <button class="reset" type="reset">Reset</button>
+                    </div>
+                </div>
+    
             </div>
         </div>
+    </form>
+
+</section>
+
+
+
+    <!-- Section II -->
+
+
+
+<section>
+
+    <div class="bigbox">
+        <div class="titlebox">
+            <h4>Post's User</h4>
+            <br>
+            <h4 class="h4title">Title</h4>
+            <br>
+            <h4>Body</h4>
+        </div>
+
+        <div class="container" *ngFor="let item of posts" [routerLink]="['/posts', item.id]">
+            <div class="childcontainer">
+                <p class="usertext">{{getName(item.userId)}}</p>
+                <p class="usertitle">{{item.title}}</p>
+                <p class="userbody">{{item.body}}</p>
+            </div>
+        </div>
+    </div>
+
 </section>

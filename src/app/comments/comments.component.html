@@ -13,14 +13,14 @@
       </div>
 
       <h3 class="title">Title</h3>
-      <div class="titletext" *ngIf="!editMode"> <p *ngIf="postName !== undefined">{{postName}}</p></div>
+      <div class="titletext" *ngIf="!editMode"> <p>{{postName?.title}}</p></div>
 
-      <input type="text" class="inputmodel" [value]="postName" *ngIf="editMode">
+      <input type="text" class="inputmodel" [(ngModel)]="nameModel" *ngIf="editMode">
 
       <h3 class="body">Body</h3>
-      <div class="bodytext" *ngIf="!editMode"></div>
+      <div class="bodytext" *ngIf="!editMode">{{postName?.body}}</div>
 
-      <textarea class="textarea" placeholder="Type text here..." [value]="" *ngIf="editMode"></textarea>
+      <textarea class="textarea" placeholder="Type text here..." [(ngModel)]="bodyModel" *ngIf="editMode"></textarea>
 
       <div class="buttonbox">
         <button (click)="onEdit()" class="button" *ngIf="!editMode">Edit</button>
@@ -29,36 +29,38 @@
 
     </div>
 
-  <div class="smallbox2">
-    <div class="commentsection">
+    <div class="smallbox2">
+      <div class="commentsection">
 
-      <div class="commentsblock" *ngFor="let item of users">
-        <img class="image" src="data:image/jpeg;base64,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" alt="image">
-        <div class="wrapper">
-          <div class="commentsname">{{matchUsers(item.id)}}</div>
-          <div class="commentsbody">{{matchBody(item.id)}}</div>
+        <div class="commentsblock" *ngFor="let item of comments">
+          <img class="image" src="data:image/jpeg;base64,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" alt="image">
+          <div class="wrapper">
+            <div class="commentsname">{{item.name}}</div>
+            <div class="commentsbody">{{item.body}}</div>
+          </div>
         </div>
+
+      </div>
+
+      <div class="commentbox">
+        <h4 class="addcomment">Add Comment</h4>
+
+        <form [formGroup]="comentsForm">
+          <div class="comment">
+            <div class="wrapper">
+              <label class="namecomment">Name</label>
+              <input class="input" formControlName="name">
+              <label class="bodycomment">Body</label>
+              <input class="input" formControlName="body">
+            </div>
+
+            <button class="add" type="submit" [disabled]="comentsForm.status === 'INVALID'" (click)="addComment()">Add</button>
+          </div>
+        </form>
+
       </div>
 
     </div>
-
-    <div class="commentbox">
-      <h4 class="addcomment">Add Comment</h4>
-
-      <div class="comment">
-        <div class="wrapper">
-          <h6 class="namecomment">Name</h6>
-          <input class="input">
-          <h6 class="bodycomment">Body</h6>
-          <input class="input">
-        </div>
-
-        <button class="add">Add</button>
-      </div>
-
-    </div>
-
-  </div>
 
     <br>
   </div>

@@ -13,18 +13,18 @@ export interface postType {
   providedIn: 'root'
 })
 export class PostsService {
-  user = {
-    userId: 132,
-    id: 154,
-    title: 'maxo',
-    body: 'lotikashvili'
-  }
 
+  url = 'https://jsonplaceholder.typicode.com/posts'
+  
   constructor(private http: HttpClient) { }
 
   getPost() {
-    return this.http.get<postType[]>('https://jsonplaceholder.typicode.com/posts')
+    return this.http.get<postType[]>(this.url)
     .pipe(catchError((error) => this.handleError(error)))
+  }
+
+  writePost(newpost: object) {
+    return this.http.post(this.url, newpost)
   }
 
   private handleError(error: HttpErrorResponse) {
