@@ -1,9 +1,9 @@
 <section>
 
     <div class="bigbox">
-        <div class="ngforbox" *ngFor="let item of albums">
-            <div class="colorbox">600 x 600</div>
-            <div class="textbox"><span>Title:</span>{{getPhotos(item.id)}}</div>
+        <div class="ngforbox" *ngFor="let item of photos">
+            <img class="image" [src]="item.url">
+            <div class="textbox"><span>Title:</span>{{item.title}}</div>
         </div>
     </div>
 

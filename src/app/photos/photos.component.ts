@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlbumsService, albumType } from '../Services/albums.service';
 import { PhotosService, photosType } from '../Services/photos.service';
 
 @Component({
@@ -11,12 +10,10 @@ import { PhotosService, photosType } from '../Services/photos.service';
 export class PhotosComponent implements OnInit {
   albumId!: any;
   photos!: photosType[];
-  albums!: albumType[];
 
   constructor(
     private route: ActivatedRoute,
     private photosservice: PhotosService,
-    private albumservice: AlbumsService
     ) { }
 
   ngOnInit(): void {
@@ -25,17 +22,8 @@ export class PhotosComponent implements OnInit {
     this.albumId = this.route.snapshot.paramMap.get('id')
 
     this.photosservice.getPhotos().subscribe((value: photosType[]) => {
-      this.photos = value;
+      this.photos = value.filter((item) => item.albumId === +this.albumId);
     })
-
-    this.albumservice.getAlbums().subscribe((value: albumType[]) => {
-      this.albums = value;
-    })
-  }
-
-  getPhotos(id: number) {
-    const title = this.albums.find((photo) => photo.id === id);
-    return title?.title
   }
 
 }

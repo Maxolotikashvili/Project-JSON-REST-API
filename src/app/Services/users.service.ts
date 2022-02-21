@@ -24,16 +24,20 @@ export interface userType {
 })
 export class UsersService {
   url = 'https://jsonplaceholder.typicode.com/users'
+  
   constructor(private http: HttpClient) { }
 
+  // 
   getUsers() {
     return this.http.get<userType[]>(this.url).pipe(catchError((error) => this.handleError(error)))
   }
 
+  // 
   sendUser(newusername: object) {
     return this.http.post(this.url, newusername)
   }
 
+  // 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
     console.error('An Error Occurred:', error.error);

@@ -18,15 +18,18 @@ export class PostsService {
   
   constructor(private http: HttpClient) { }
 
+  // 
   getPost() {
     return this.http.get<postType[]>(this.url)
     .pipe(catchError((error) => this.handleError(error)))
   }
 
+  // 
   writePost(newpost: object) {
     return this.http.post(this.url, newpost)
   }
 
+  // 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
     console.error('An Error Occurred:', error.error);

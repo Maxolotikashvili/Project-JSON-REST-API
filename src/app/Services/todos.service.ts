@@ -16,10 +16,12 @@ export class TodosService {
 
   constructor(private http: HttpClient) { }
 
+  // 
   getTodos() {
    return this.http.get<todosType[]>('https://jsonplaceholder.typicode.com/todos').pipe(catchError((error) => this.handleError(error)))
   }
 
+  // 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
     console.error('An Error Occurred:', error.error);

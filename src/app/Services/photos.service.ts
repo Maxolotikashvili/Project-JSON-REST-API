@@ -18,8 +18,8 @@ export class PhotosService {
   constructor(private http: HttpClient) { }
 
   getPhotos() {
-   return this.http.get<photosType[]>('https://jsonplaceholder.typicode.com/photos')
-   .pipe(catchError((error) => this.handleError(error)))
+    return this.http.get<photosType[]>('https://jsonplaceholder.typicode.com/photos')
+    .pipe(catchError((error) => this.handleError(error)))
   }
 
   //

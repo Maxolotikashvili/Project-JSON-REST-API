@@ -18,7 +18,7 @@ export class PostsComponent implements OnInit {
   titleValue!: any; 
   bodyValue!: any;
   
-  // Getters
+  // Getter Vars
   Author!: any;
   Title!: any;
   Body!: any;

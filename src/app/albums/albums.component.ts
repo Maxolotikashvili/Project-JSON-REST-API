@@ -8,6 +8,7 @@ import { UsersService, userType } from '../Services/users.service';
   styleUrls: ['./albums.component.scss']
 })
 export class AlbumsComponent implements OnInit {
+  // 
   albums!: albumType[];
   users!: userType[];
 
@@ -29,6 +30,7 @@ export class AlbumsComponent implements OnInit {
 
   }
 
+  // 
   getNames(userId: number) {
     const names = this.users?.find((names) => names.id === userId)
     return names?.name

@@ -15,10 +15,12 @@ export class AlbumsService {
 
   constructor(private http: HttpClient) { }
 
+  // 
   getAlbums() {
     return this.http.get<albumType[]>('https://jsonplaceholder.typicode.com/albums').pipe(catchError((error) => this.handleError(error)))
   }
 
+    // 
     private handleError(error: HttpErrorResponse) {
       if (error.status === 0) {
       console.error('An Error Occurred:', error.error);
