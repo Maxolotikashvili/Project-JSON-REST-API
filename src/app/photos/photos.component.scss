@@ -28,7 +28,8 @@ section {
         .textbox {
             margin-bottom: 20px;
             text-align: center;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+                sans-serif;
             font-size: 14px;
 
             span {
@@ -38,7 +39,7 @@ section {
     }
 
     .ngforbox:hover {
-        transform:scale(1.007);
-        box-shadow:5px 5px 2px black;
+        transform: scale(1.007);
+        box-shadow: 5px 5px 2px black;
     }
 }

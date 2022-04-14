@@ -2,9 +2,8 @@ $color: rgb(0, 109, 109);
 $gradient: linear-gradient(135deg, #e7e7e7 0%, rgb(0, 56, 56) 74%);
 
 section {
-    background-color: #44b09e;
-    background-image: linear-gradient(135deg, #e7e7e7 0%, rgb(0, 56, 56) 74%);
-    padding-top: 160px;
+    background-color: #ffff;
+    margin-top: 160px;
 
     .bigbox {
         display: flex;
@@ -18,12 +17,11 @@ section {
             justify-content: space-evenly;
             align-items: center;
             background-color: $color;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 
             .h4title {
                 margin-left: 30px;
             }
-
         }
 
         .container {
@@ -36,10 +34,9 @@ section {
                 padding: 40px 0px 40px 0px;
                 grid-template-columns: repeat(3, minmax(0, 1fr));
                 text-align: center;
-                background-color: $gradient;
                 border-bottom: 1px solid $color;
-                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            
+                font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
                 .usertext {
                     text-align: center;
                 }
@@ -52,12 +49,11 @@ section {
                     text-align: center;
                 }
             }
-
         }
 
         .container:hover {
             transform: scale(1.007);
-            box-shadow: -5px 5px 5px black;
+            box-shadow: -2px 2px 2px black;
         }
     }
 }

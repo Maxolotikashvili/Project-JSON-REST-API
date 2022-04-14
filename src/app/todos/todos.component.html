@@ -1,22 +1,22 @@
 <section>
 
-    <div class="bigbox">
-        <div class="todosbox" *ngFor="let item of todos">
+  <div class="bigbox">
+    <div class="todosbox" *ngFor="let item of todos">
 
-            <div class="textbox">
-                <p class="title">Title:</p>{{item.title}}
-            </div>
+      <div class="textbox">
+        <p class="title">Title:</p>{{item.title}}
+      </div>
 
-            <div class="booleanbox">
-                <p class="completion">Completion:</p>
-                    <p *ngIf="item.completed === true">
-                        <fa-icon [icon]="faCheck" class="check"></fa-icon>
-                    </p>
-                    <p *ngIf="item.completed === false">
-                        <fa-icon [icon]="faXmark" class="faXmark"></fa-icon>
-                    </p>
-            </div>
-        </div>
+      <div class="booleanbox">
+        <p class="completion">Completion:</p>
+        <p *ngIf="item.completed === true">
+          <fa-icon [icon]="faCheck" class="check"></fa-icon>
+        </p>
+        <p *ngIf="item.completed === false">
+          <fa-icon [icon]="faXmark" class="faXmark"></fa-icon>
+        </p>
+      </div>
     </div>
+  </div>
 
-</section>      
+</section>

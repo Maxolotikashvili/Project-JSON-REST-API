@@ -33,8 +33,8 @@ export class CommentsComponent implements OnInit {
 
   // 
   addpost: object = {
-  name: this.formName,
-  body: this.formBody
+    name: this.formName,
+    body: this.formBody
   };
 
   // 
@@ -51,13 +51,13 @@ export class CommentsComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private http: HttpClient
-  ) { 
+  ) {
 
     // 
-   this.comentsForm = this.fb.group({
-     name: ['', Validators.required],
-     body: ['', Validators.required]
-   })
+    this.comentsForm = this.fb.group({
+      name: ['', Validators.required],
+      body: ['', Validators.required]
+    })
 
   }
 
@@ -67,11 +67,11 @@ export class CommentsComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('id');
 
     //
-    this.postservice.getPost().subscribe((value: postType[])=> {
+    this.postservice.getPost().subscribe((value: postType[]) => {
       this.posts = value
-      
+
       //
-      this.postName = this.posts?.find((post: any)=> post.id === +this.userId);
+      this.postName = this.posts?.find((post: any) => post.id === +this.userId);
 
       this.nameModel = this.postName?.title;
       this.bodyModel = this.postName?.body;
@@ -79,24 +79,24 @@ export class CommentsComponent implements OnInit {
 
     // 
     this.http.put<any>(`https://jsonplaceholder.typicode.com/posts/${this.userId}`, this.update)
-    .subscribe((data) => {this.updatedComment = data})
+      .subscribe((data) => { this.updatedComment = data })
 
     // 
-    this.commentsservice.sendComment(this.addpost).subscribe((data)=> {
-      this.newComment = data 
+    this.commentsservice.sendComment(this.addpost).subscribe((data) => {
+      this.newComment = data
     });
 
     //
-    this.commentsservice.getComments().subscribe((value: commentsType[])=> {
+    this.commentsservice.getComments().subscribe((value: commentsType[]) => {
       this.comments = value?.filter((item) => item.postId === +this.userId);
     });
 
   }
-  
+
   // 
   onEdit() {
     this.editMode = !this.editMode;
-    this.updatedComment = {title: this.nameModel, body: this.bodyModel}
+    this.updatedComment = { title: this.nameModel, body: this.bodyModel }
     this.postName = this.updatedComment;
   }
 
@@ -109,7 +109,7 @@ export class CommentsComponent implements OnInit {
   addComment() {
     this.formName = this.comentsForm.get('name')?.value;
     this.formBody = this.comentsForm.get('body')?.value;
-    this.newComment = {name: this.formName, body: this.formBody}
+    this.newComment = { name: this.formName, body: this.formBody }
     this.comments.push(this.newComment)
   }
 

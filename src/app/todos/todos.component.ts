@@ -19,7 +19,7 @@ export class TodosComponent implements OnInit {
     this.todosservice.getTodos().subscribe((value) => {
       this.todos = value;
     });
-    
+
   }
 
 }

@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
   title = 'Social';
 
   ngOnInit(): void {
-  
+
   }
 }
