@@ -1,3 +1,2 @@
-# Social
-
-Mini social network in a nutshell
+# JSON Placeholder 
+JSON REST API Project built with Angular 13 
