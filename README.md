@@ -1,2 +1,2 @@
 # JSON Placeholder 
-JSON REST API Project built with Angular 13 
+JSON REST API Project, focused on REST API and Observables built with Angular 13
